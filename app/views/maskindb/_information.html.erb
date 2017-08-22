@@ -1,0 +1,63 @@
+<% if @maskindb_entry.nil?%>
+  <div class="alert alert-critical">
+    <%= _('Unable to find MaskinDB entry for this host') %>
+  </div>
+<% else %>
+  <h2><%= link_to _('MaskinDB Data'), @maskindb_entry[:url] %></h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr><th colspan="2"><%=_('Server') %></th></tr>
+    </thead>
+    <tbody>
+      <%= mprop :status %>
+
+      <%= mprop :servernamn %>
+      <%= mprop :operativsystem %>
+      <%= mprop :version %>
+      <%= mprop :ansvarig %>
+      <%= mprop :reserv %>
+      <%= mprop :brukare %>
+      <%= mprop :inköpt %>
+      <%= mprop :datorhall %>
+      <%= mprop :modell %>
+      <%= mprop :rack %>
+      <%= mprop :serienr %>
+      <%= mprop :inventarienr %>
+      <%= mprop :uuid %>
+      <%= mprop :noteringar %>
+    </tbody>
+  </table>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr><th colspan="2"><%=_('Support') %></th></tr>
+    </thead>
+    <tbody>
+      <%= mprop :supportavtal %>
+      <%= mprop :supportdatum %>
+    </tbody>
+  </table>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr><th colspan="2"><%=_('Förbrukning (W)') %></th></tr>
+    </thead>
+    <tbody>
+      <%= mprop :standby %>
+      <%= mprop :normal %>
+    </tbody>
+  </table>
+  <%
+    kontakter = @maskindb_entry.kontakter rescue []
+  %>
+  <% if kontakter.any? %>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr><th colspan="2"><%=_('Kontakter') %></th></tr>
+      </thead>
+      <tbody>
+        <% kontakter.each do |k| %>
+          <tr><th><%= k[:id] %></th><td><%= k[:kommentar] %></td></tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>
