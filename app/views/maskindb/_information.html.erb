@@ -16,26 +16,26 @@
       <%= mprop :notes, _('Notering') %>
     </tbody>
   </table>
-  <!--
   <table class="table table-bordered table-striped">
     <thead>
       <tr><th colspan="2"><%=_('Hårdvara') %></th></tr>
     </thead>
     <tbody>
       <%= mprop :uuid %>
-      <%= mprop :datorhall %>
+      <%= mprop :datacenter, _('Datorhall') %>
       <%= mprop :rack %>
-      <%= mprop :modell %>
-      <%= mprop :inköpt %>
-      <%= mprop :serienummer %>
-      <%= mprop :anläggningsnummer %>
-      <%= mprop :objektnummer %>
-      <%= mprop :supportavtal %>
-      <%= mprop :slutdatum %>
-      <%= mprop :standby %>
-      <%= mprop :normal %>
+      <%= mprop :model, _('Modell') %>
+      <%= mprop :buydate, _('Inköpt') %>
+      <%= mprop :ser_no, _('Serienummer') %>
+      <%= mprop :inv_no, _('Anläggningsnummer') %>
+      <%= mprop :obj_no, _('Objektnummer') %>
+      <%#= mprop :supportavtal %>
+      <%#= mprop :slutdatum %>
+      <%#= mprop :standby %>
+      <%#= mprop :normal %>
     </tbody>
   </table>
+  <!--
   <%
     kontakter = @maskindb_entry.kontakter rescue []
   %>
@@ -51,4 +51,5 @@
       </tbody>
     </table>
   <% end %>
+  -->
 <% end %>
