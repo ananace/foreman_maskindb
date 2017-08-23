@@ -5,7 +5,14 @@ module MaskindbHelper
         title || prop_name.to_s.humanize
       end
       result += content_tag(:td) do
-        @maskindb_entry[prop_name] if @maskindb_entry
+        data = (@maskindb_entry ? @maskindb_entry[prop_name] : nil)
+        if data.is_a?(Hash)
+          data[:name] || data[:type] || data[:username]
+        elsif data.is_a?(String)
+          data
+        else
+          'N/A'
+        end
       end
       result
     end

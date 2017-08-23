@@ -3,44 +3,35 @@
     <%= _('Unable to find MaskinDB entry for this host') %>
   </div>
 <% else %>
-  <h2><%= link_to _('MaskinDB Data'), @maskindb_entry[:url] %></h2>
+  <h2><a href="<%= SETTINGS[:maskindb_url] + '/servrar/server/' + @maskindb_entry[:url].split('/').last %>"><%= _('MaskinDB Data') %></a></h2>
   <table class="table table-bordered table-striped">
     <thead>
       <tr><th colspan="2"><%=_('Server') %></th></tr>
     </thead>
     <tbody>
       <%= mprop :status %>
-
-      <%= mprop :servernamn %>
-      <%= mprop :operativsystem %>
-      <%= mprop :version %>
-      <%= mprop :ansvarig %>
-      <%= mprop :reserv %>
-      <%= mprop :brukare %>
-      <%= mprop :inköpt %>
-      <%= mprop :datorhall %>
-      <%= mprop :modell %>
-      <%= mprop :rack %>
-      <%= mprop :serienr %>
-      <%= mprop :inventarienr %>
+      <%= mprop :admin, _('Ansvarig') %>
+      <%= mprop :backupadmin, _('Reserv') %>
+      <%= mprop :group, _('Brukare') %>
+      <%= mprop :notes, _('Notering') %>
+    </tbody>
+  </table>
+  <!--
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr><th colspan="2"><%=_('Hårdvara') %></th></tr>
+    </thead>
+    <tbody>
       <%= mprop :uuid %>
-      <%= mprop :noteringar %>
-    </tbody>
-  </table>
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr><th colspan="2"><%=_('Support') %></th></tr>
-    </thead>
-    <tbody>
+      <%= mprop :datorhall %>
+      <%= mprop :rack %>
+      <%= mprop :modell %>
+      <%= mprop :inköpt %>
+      <%= mprop :serienummer %>
+      <%= mprop :anläggningsnummer %>
+      <%= mprop :objektnummer %>
       <%= mprop :supportavtal %>
-      <%= mprop :supportdatum %>
-    </tbody>
-  </table>
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr><th colspan="2"><%=_('Förbrukning (W)') %></th></tr>
-    </thead>
-    <tbody>
+      <%= mprop :slutdatum %>
       <%= mprop :standby %>
       <%= mprop :normal %>
     </tbody>
