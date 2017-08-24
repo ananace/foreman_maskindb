@@ -1,6 +1,6 @@
 <% if @maskindb_entry.nil?%>
   <div class="alert alert-critical">
-    <%= _('Unable to find MaskinDB entry for this host') %>
+    <%= _('Kan inte hitta maskinen i MaskinDB') %>
   </div>
 <% else %>
   <h2><a href="<%= SETTINGS[:maskindb_url] + '/servrar/server/' + @maskindb_entry[:url].split('/').last %>"><%= _('MaskinDB Data') %></a></h2>
@@ -35,9 +35,8 @@
       <%#= mprop :normal %>
     </tbody>
   </table>
-  <!--
   <%
-    kontakter = @maskindb_entry.kontakter rescue []
+    kontakter = @maskindb_entry[:kontakter] || [] rescue []
   %>
   <% if kontakter.any? %>
     <table class="table table-bordered table-striped">
@@ -51,5 +50,4 @@
       </tbody>
     </table>
   <% end %>
-  -->
 <% end %>
