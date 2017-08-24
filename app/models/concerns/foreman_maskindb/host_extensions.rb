@@ -43,7 +43,7 @@ module ForemanMaskindb
           hrd.delete :server
           hrd.delete :url
           hrd.merge srv
-        rescue RestClient::NotFound
+        rescue RestClient::Exceptions::EXCEPTIONS_MAP[404]
           nil
         end
       end
