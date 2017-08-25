@@ -18,34 +18,33 @@ module ForemanMaskindb
             }
           ).body, symbolize_names: true
         )
-        logger.debug "#{url} => #{data}"
+        logger.debug "  #{url} => #{data}"
         data
       end.freeze
 
-      Rails.cache.fetch("#{cache_key}/maskindb_entry", expires_in: 15.minutes) do
-        begin
-          hrd = mdb_query.call "#{SETTINGS[:maskindb_url]}/api/hardware/#{name}/"
-          %i(datacenter rack model).each do |key|
-            next unless hrd[key]
+      begin
+        hrd = mdb_query.call "#{SETTINGS[:maskindb_url]}/api/hardware/#{name}/"
+        %i(datacenter rack model).each do |key|
+          next unless hrd[key]
 
-            data = mdb_query.call hrd[key]
-            hrd[key] = data.reject { |k, _v| k == :url }.deep_symbolize_keys
-          end
-
-          srv = mdb_query.call hrd[:server]
-          %i(status admin backupadmin group).each do |key|
-            next unless srv[key]
-
-            data = mdb_query.call srv[key]
-            srv[key] = data.reject { |k, _v| k == :url }.deep_symbolize_keys
-          end
-
-          hrd.delete :server
-          hrd.delete :url
-          hrd.merge srv
-        rescue RestClient::Exceptions::EXCEPTIONS_MAP[404]
-          nil
+          data = mdb_query.call hrd[key]
+          hrd[key] = data.reject { |k, _v| k == :url }.deep_symbolize_keys
         end
+
+        srv = mdb_query.call hrd[:server]
+        %i(status admin backupadmin group).each do |key|
+          next unless srv[key]
+
+          data = mdb_query.call srv[key]
+          srv[key] = data.reject { |k, _v| k == :url }.deep_symbolize_keys
+        end
+
+        hrd.delete :server
+        hrd.delete :url
+        hrd.merge srv
+      rescue RestClient::Exceptions::EXCEPTIONS_MAP[404]
+        # Ignore missing hosts
+        nil
       end
     end
   end

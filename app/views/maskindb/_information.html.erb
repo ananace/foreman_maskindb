@@ -1,19 +1,23 @@
-<% if @maskindb_entry.nil?%>
-  <div class="alert alert-critical">
+<% if @maskindb_entry.nil? %>
+  <div class="alert alert-warning">
     <%= _('Kan inte hitta maskinen i MaskinDB') %>
   </div>
 <% else %>
-  <h2><a href="<%= SETTINGS[:maskindb_url] + '/servrar/server/' + @maskindb_entry[:url].split('/').last %>"><%= _('MaskinDB Data') %></a></h2>
+  <%
+      srv_url = SETTINGS[:maskindb_url] + '/servrar/server/' + @maskindb_entry[:url].split('/').last
+  %>
+  <h2><a href="<%= srv_url %>"><%= _('MaskinDB Information') %></a></h2>
   <table class="table table-bordered table-striped">
     <thead>
       <tr><th colspan="2"><%=_('Server') %></th></tr>
     </thead>
     <tbody>
       <%= mprop :status %>
+      <tr style="height: 1em"><td colspan="2"></td></tr>
       <%= mprop :admin, _('Ansvarig') %>
       <%= mprop :backupadmin, _('Reserv') %>
       <%= mprop :group, _('Brukare') %>
-      <%= mprop :notes, _('Notering') %>
+      <%= mprop :notes, _('Noteringar') %>
     </tbody>
   </table>
   <table class="table table-bordered table-striped">
@@ -21,11 +25,11 @@
       <tr><th colspan="2"><%=_('Hårdvara') %></th></tr>
     </thead>
     <tbody>
-      <%= mprop :uuid %>
+      <%= mprop :uuid, _('UUID') %>
       <%= mprop :datacenter, _('Datorhall') %>
       <%= mprop :rack %>
       <%= mprop :model, _('Modell') %>
-      <%= mprop :buydate, _('Inköpt') %>
+      <%= mprop :buydate, _('Inköpt/Skapad') %>
       <%= mprop :ser_no, _('Serienummer') %>
       <%= mprop :inv_no, _('Anläggningsnummer') %>
       <%= mprop :obj_no, _('Objektnummer') %>
