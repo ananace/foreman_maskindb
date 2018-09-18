@@ -16,7 +16,7 @@ module ForemanMaskindb
     def action_permission
       case params[:action]
       when 'maskindb'
-        :view
+        :view_hosts
       else
         super
       end

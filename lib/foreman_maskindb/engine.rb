@@ -9,6 +9,10 @@ module ForemanMaskindb
     initializer 'foreman_hyperv.register_plugin', before: :finisher_hook do
       Foreman::Plugin.register :foreman_maskindb do
         requires_foreman '>= 1.14'
+
+        Foreman::AccessControl.permission(:view_hosts).actions.concat [
+          'hosts/maskindb'
+        ]
       end
     end
 
