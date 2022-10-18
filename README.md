@@ -12,7 +12,7 @@ After checking out the repo, run `bundle install` to install dependencies. Then,
 
 ## Contributing
 
-Bug reports and merge requests are welcome on the LiU-IT GitLab at https://gitlab.liu.se/ITI/foreman_maskindb or GitHub at https://github.com/ananace/foreman_maskindb
+Bug reports and merge requests are welcome on the LiU GitLab at https://gitlab.liu.se/ITI/foreman_maskindb or GitHub at https://github.com/ananace/foreman_maskindb
 
 ## License
 
