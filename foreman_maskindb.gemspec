@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
-lib = File.expand_path('lib', __dir__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-
-require 'foreman_maskindb/version'
+require File.join File.expand_path('lib', __dir__), 'foreman_maskindb/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'foreman_maskindb'
@@ -16,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/ananace/foreman_maskindb'
   spec.license       = 'GPL-3.0'
 
-  spec.files         = Dir['{app,lib}/**/*.{rake,rb}'] + %w[LICENSE.txt README.md]
+  spec.files         = Dir['{app,config,db,lib}/**/*.{rake,rb}'] + %w[LICENSE.txt README.md]
   spec.require_paths = ['lib']
 
   spec.add_dependency 'deface'
