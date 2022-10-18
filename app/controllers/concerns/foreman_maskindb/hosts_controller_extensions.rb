@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ForemanMaskindb
   module HostsControllerExtensions
     extend ActiveSupport::Concern
@@ -7,8 +9,8 @@ module ForemanMaskindb
       find_resource
       @maskindb_entry = @host.maskindb_entry
       render partial: 'maskindb/information'
-    rescue ActionView::Template::Error => exception
-      process_ajax_error exception, 'fetch maskindb information'
+    rescue ActionView::Template::Error => e
+      process_ajax_error e, 'fetch maskindb information'
     end
 
     private

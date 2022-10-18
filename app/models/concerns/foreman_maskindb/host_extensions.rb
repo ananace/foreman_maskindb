@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ForemanMaskindb
   module HostExtensions
     extend ActiveSupport::Concern
@@ -24,7 +26,7 @@ module ForemanMaskindb
 
       begin
         hrd = mdb_query.call "#{SETTINGS[:maskindb_url]}/api/hardware/#{name}/"
-        %i(datacenter rack model).each do |key|
+        %i[datacenter rack model].each do |key|
           next unless hrd[key]
 
           data = mdb_query.call hrd[key]
@@ -32,7 +34,7 @@ module ForemanMaskindb
         end
 
         srv = mdb_query.call hrd[:server]
-        %i(status admin backupadmin group).each do |key|
+        %i[status admin backupadmin group].each do |key|
           next unless srv[key]
 
           data = mdb_query.call srv[key]

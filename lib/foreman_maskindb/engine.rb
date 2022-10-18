@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'deface'
 
 module ForemanMaskindb
@@ -10,19 +12,15 @@ module ForemanMaskindb
       Foreman::Plugin.register :foreman_maskindb do
         requires_foreman '>= 1.14'
 
-        Foreman::AccessControl.permission(:view_hosts).actions.concat [
-          'hosts/maskindb'
-        ]
+        Foreman::AccessControl.permission(:view_hosts).actions << 'hosts/maskindb'
       end
     end
 
     config.to_prepare do
-      begin
-        Host::Managed.send(:include, ForemanMaskindb::HostExtensions)
-        HostsController.send(:include, ForemanMaskindb::HostsControllerExtensions)
-      rescue => e
-        puts "ForemanMaskindb: skipping engine hook (#{e})"
-      end
+      Host::Managed.prepend ForemanMaskindb::HostExtensions
+      HostsController.prepend ForemanMaskindb::HostsControllerExtensions
+    rescue StandardError => e
+      puts "ForemanMaskindb: skipping engine hook (#{e})"
     end
   end
 end

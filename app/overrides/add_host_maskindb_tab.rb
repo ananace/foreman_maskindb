@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Deface::Override.new(
   virtual_path:  'hosts/show',
   name:          'add_maskind_tab',

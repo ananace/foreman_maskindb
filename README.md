@@ -12,9 +12,8 @@ After checking out the repo, run `bundle install` to install dependencies. Then,
 
 ## Contributing
 
-Bug reports and merge requests are welcome on the LiU-IT GitLab at https://gitlab.it.liu.se/serverdrift-projs/foreman_maskindb
+Bug reports and merge requests are welcome on the LiU-IT GitLab at https://gitlab.liu.se/ITI/foreman_maskindb or GitHub at https://github.com/ananace/foreman_maskindb
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
+The gem is available as open source under the terms of the [GPL-3.0 License](http://opensource.org/licenses/GPL-3.0).

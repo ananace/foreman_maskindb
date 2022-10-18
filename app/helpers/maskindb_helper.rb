@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MaskindbHelper
   def mprop(prop_name, title = nil)
     content_tag :tr do
@@ -6,9 +8,10 @@ module MaskindbHelper
       end
       result += content_tag(:td) do
         data = (@maskindb_entry ? @maskindb_entry[prop_name] : nil)
-        if data.is_a?(Hash)
+        case data
+        when Hash
           data[:name] || data[:type] || data[:username]
-        elsif data.is_a?(String)
+        when String
           data
         else
           'N/A'
