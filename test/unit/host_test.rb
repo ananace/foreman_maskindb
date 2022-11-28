@@ -5,8 +5,6 @@ require 'test_plugin_helper'
 class HostTest < ActiveSupport::TestCase
   setup do
     User.current = FactoryBot.build(:user, :admin)
-    disable_orchestration
-
     SETTINGS[:maskindb_url] = 'http://example.com'
   end
 
@@ -27,7 +25,7 @@ class HostTest < ActiveSupport::TestCase
         .expects(:mdb_query)
         .with('http://example.com/api/hardware/example')
         .once
-        .raises RestClient::Exception::EXCEPTIONS_MAP[404]
+        .raises RestClient::Exceptions::EXCEPTIONS_MAP[404]
 
       assert_nil host.maskindb_entry
     end
