@@ -14,11 +14,11 @@ Gem::Specification.new do |spec|
   spec.license       = 'GPL-3.0'
 
   spec.files         = Dir['{app,config,db,lib}/**/*.{rake,rb}'] + %w[LICENSE.txt README.md]
-  spec.require_paths = ['lib']
 
   spec.add_dependency 'deface'
 
-  spec.add_development_dependency 'bundler'
-  spec.add_development_dependency 'minitest'
-  spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'rubocop-minitest'
+  spec.add_development_dependency 'rubocop-performance'
+  spec.add_development_dependency 'rubocop-rails'
 end
