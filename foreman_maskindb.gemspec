@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/ananace/foreman_maskindb'
   spec.license       = 'GPL-3.0'
 
-  spec.files         = Dir['{app,config,db,lib}/**/*.{rake,rb}'] + %w[LICENSE.txt README.md]
+  spec.files         = Dir['{app,config,db,lib}/**/*.*'] + %w[LICENSE.txt README.md]
 
   spec.add_dependency 'deface'
 
